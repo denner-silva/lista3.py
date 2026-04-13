@@ -84,7 +84,10 @@ def q2():
 #ano, e um país B com 7 milhões de habitantes e uma taxa de natalidade de 2% ao
 #ano, fazer um programa que calcule e imprima o tempo necessário para que a
 #população do país A ultrapasse a população do país B.
-
+def q12() -> none:
+    paisA: int = 5_000_000
+    paisB: int = 7_000_000
+    
 #13. Uma empresa de fornecimento de energia elétrica faz a leitura mensal dos medidores
 #de consumo. Para cada consumidor, são digitados os seguintes dados:
 #• número do consumidor
