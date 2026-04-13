@@ -28,14 +28,31 @@ def q2():
         print(c, end=' ')
 
 #3. Faça um programa que imprima os múltiplos de 5, no intervalo de 1 até 500.
+def q3():
+    for c in range(5, 501, 5):
+        print(c, end=' ')
 
 #4. Faça um programa que permita entrar com o nome, a idade e o sexo de 20
 #pessoas.O programa deve imprimir o nome da pessoa se ela for do sexo masculino
 #e tiver mais de 21 anos.
+def q4():
+    for i in range(20):
+        nome = input("Nome: ")
+        idade = int(input("Idade: "))
+        sexo = input("Sexo (M/F): ").upper()
+        if sexo == "M" and idade > 21:
+            print(nome)
 
 #5. Sabendo-se que a unidade lógica e aritmética calcula o produto através de somas
 #sucessivas, crie um programa que calcule o produto de dois números inteiros
 #lidos. Suponha que os números lidos sejam positivos.
+def q5():
+    a = int(input("Digite o primeiro número: "))
+    b = int(input("Digite o segundo número: "))
+    resultado = 0
+    for i in range(b):
+        resultado += a
+    print("Resultado:", resultado)
 
 #6. Crie um programa que imprima os 20 primeiros termos da série de Fibonacci.
 #Observação: os dois primeiros termos desta série são 1 e 1 e os demais são gerados
@@ -43,11 +60,29 @@ def q2():
 #• 1 + 1 = 2, terceiro termo;
 #• 1 + 2 = 3, quarto termo, etc.
 # 1 1 2 3 5 8 13 21
+def q6():
+    a, b = 1, 1
+    print(a, b, end=' ')  
+    for i in range(18):
+        c = a + b
+        print(c, end=' ')
+        a = b
+        b = c
 
 #7. Crie um programa que permita entrar com o nome, a nota da
 #prova 1 e da prova 2 de 15 alunos. Ao final, imprimir uma listagem, contendo:
 #nome, nota da prova 1, nota da prova 2, e média das notas de cada aluno. Ao final,
 #imprimir a média geral da turma.
+def q7():
+    soma_geral = 0
+    for i in range(15):
+        nome = input("Nome: ")
+        n1 = float(input("Nota 1: "))
+        n2 = float(input("Nota 2: "))
+        media = (n1 + n2) / 2
+        print(nome, n1, n2, media)
+        soma_geral += media
+    print("Média da turma:", soma_geral / 15)
 
 #8. Faça um programa que permita entrar com o nome e o salário bruto de 10 pessoas.
 #Após ler os dados, imprimir o nome e o valor da alíquota do imposto de renda
@@ -56,7 +91,17 @@ def q2():
 #Salário menor que R$1300,00 Isento
 #Salário maior ou igual a R$1300,00 e menor que R$2300,00 10% do salário bruto
 #Salário maior ou igual a R$2300,00 15% do salário bruto
-
+def q8():
+    for i in range(10):
+        nome = input("Nome: ")
+        salario = float(input("Salário: "))
+        if salario < 1300:
+            print(nome, "Isento")
+        elif salario < 2300:
+            print(nome, salario * 0.10)
+        else:
+            print(nome, salario * 0.15)
+            
 #9. No dia da estreia do filme "Procurando Dory", uma grande emissora de TV realizou
 #uma pesquisa logo após o encerramento do filme. Cada espectador respondeu
 #a um questionário no qual constava sua idade e a sua opinião em relação ao filme:
@@ -66,6 +111,27 @@ def q2():
 #• A quantidade de pessoas que responderam regular;
 #• A percentagem de pessoas que responderam bom entre todos os expectadores
 #analisados.
+def q9():
+    soma_idade_exc = 0
+    cont_exc = 0
+    cont_reg = 0
+    cont_bom = 0
+    for i in range(20):
+        idade = int(input("Idade: "))
+        opiniao = int(input("Opinião (3=excelente,2=bom,1=regular): "))
+        if opiniao == 3:
+            soma_idade_exc += idade
+            cont_exc += 1
+        elif opiniao == 2:
+            cont_bom += 1
+        elif opiniao == 1:
+            cont_reg += 1
+    if cont_exc > 0:
+        print("Média idade excelente:", soma_idade_exc / cont_exc)
+    else:
+        print("Sem respostas excelente")
+    print("Quantidade regular:", cont_reg)
+    print("Percentual bom:", (cont_bom / 20) * 100, "%")
 
 #10. Em um campeonato Europeu de Volleyball, se inscreveram 30 países. Sabendo-se
 #que na lista oficial de cada país consta, além de outros dados, peso e idade de 12
@@ -75,16 +141,63 @@ def q2():
 #• O atleta mais pesado de cada time;
 #• O atleta mais jovem de cada time;
 #• O peso médio e a idade média de todos os participantes.
-
+def q10():
+    soma_peso_total = 0
+    soma_idade_total = 0
+    total_atletas = 0
+    for pais in range(30):
+        soma_peso = 0
+        soma_idade = 0
+        maior_peso = 0
+        menor_idade = 999
+        for atleta in range(12):
+            peso = float(input("Peso: "))
+            idade = int(input("Idade: "))
+            soma_peso += peso
+            soma_idade += idade
+            if peso > maior_peso:
+                maior_peso = peso
+            if idade < menor_idade:
+                menor_idade = idade
+        print("Média peso time:", soma_peso / 12)
+        print("Média idade time:", soma_idade / 12)
+        print("Mais pesado:", maior_peso)
+        print("Mais jovem:", menor_idade)
+        soma_peso_total += soma_peso
+        soma_idade_total += soma_idade
+        total_atletas += 12
+    print("Média peso geral:", soma_peso_total / total_atletas)
+    print("Média idade geral:", soma_idade_total / total_atletas)
+    
 #11. Construa um programa que leia vários números e informe quantos números
 #entre 100 e 200 foram digitados. Quando o valor 0 (zero) for lido, o algoritmo
 #deverá cessar sua execução.
-
+def q11():
+    cont = 0
+    while True:
+        num = int(input("Digite um número (0 para sair): "))     
+        if num == 0:
+            break  
+        if 100 <= num <= 200:
+            cont += 1
+    print("Quantidade entre 100 e 200:", cont)
+    
 #12. Dado um país A, com 5 milhões de habitantes e uma taxa de natalidade de 3% ao
 #ano, e um país B com 7 milhões de habitantes e uma taxa de natalidade de 2% ao
 #ano, fazer um programa que calcule e imprima o tempo necessário para que a
 #população do país A ultrapasse a população do país B.
-
+def q12() -> none:
+    paisA: int = 5_000_000
+    paisB: int = 7_000_000
+    ano = 0
+    while paisA < paisB:
+    ano+=1
+    paisA = paisA*1.03
+    paisB = paisB*1.02
+    print (f'Ao final de {ano} anos, a população do pais A superou a de B')
+    print (f' População do pais A = {int(paisA)}')
+    print (f' População do pais B = {int(paisB)}')
+    
 #13. Uma empresa de fornecimento de energia elétrica faz a leitura mensal dos medidores
 #de consumo. Para cada consumidor, são digitados os seguintes dados:
 #• número do consumidor
