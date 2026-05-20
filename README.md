@@ -157,18 +157,15 @@ def q12() -> None:
     print(f'Ao final de {ano} anos, a população do país A superou a de B')
     print(f'População do país A = {int(paisA)}')
     print(f'População do país B = {int(paisB)}')
-
     # Criar o gráfico
     plt.ticklabel_format(style='plain', axis='y') # 'plain' mostra o número cheio
     plt.plot(xA, yA, marker='.', linestyle='-', color='b', label='País A')
     plt.plot(xB, yB, marker='.', linestyle='-', color='r', label='País B')
-
     # Adicionar títulos e rótulos
     plt.title('Crescimento Populacional dos Países A e B')
     plt.xlabel('Ano')
     plt.ylabel('População')
     plt.legend(loc='best')
-
     # Exibir
     plt.show()
 
@@ -189,16 +186,13 @@ def q121() -> None:
         x.append(mes)
         y.append(saldo)
     print(f'Tempo do investimento: {int(mes/12)} anos e {mes%12} meses.')
-
     # Criar o gráfico
     plt.ticklabel_format(style='plain', axis='y') # 'plain' mostra o número cheio
     plt.plot(x, y, linestyle='-', color='b')
-
     # Adicionar títulos e rótulos
     plt.title('Histórico do Saldo do Investimento')
     plt.xlabel('Mês')
     plt.ylabel('Saldo')
-
     # Exibir
     plt.show()
 
@@ -215,14 +209,71 @@ def q121() -> None:
 #• O custo total para cada consumidor
 #• O total de consumo para os três tipos de consumidor
 #• A média de consumo dos tipos 1 e 2
+#13. Consumo de energia elétrica
+
+def q13():
+    total_residencial = 0
+    total_comercial = 0
+    total_industrial = 0
+    soma_12 = 0
+    qtd_12 = 0
+    while True:
+        numero = int(input('Número do consumidor: '))
+        if numero == 0:
+            break
+        kwh = float(input('Quantidade de kWh consumidos: '))
+        tipo = int(input('Tipo consumidor (1-Residencial | 2-Comercial | 3-Industrial): '))
+        if tipo == 1:
+            preco = 0.3
+            total_residencial += kwh
+        elif tipo == 2:
+            preco = 0.5
+            total_comercial += kwh
+        else:
+            preco = 0.7
+            total_industrial += kwh
+        custo = kwh * preco
+        if tipo == 1 or tipo == 2:
+            soma_12 += kwh
+            qtd_12 += 1
+        print(f'Custo total do consumidor: R$ {custo:.2f}')
+    print(f'Total residencial: {total_residencial} kWh')
+    print(f'Total comercial: {total_comercial} kWh')
+    print(f'Total industrial: {total_industrial} kWh')
+    if qtd_12 > 0:
+        print(f'Média consumo tipos 1 e 2: {soma_12/qtd_12:.2f} kWh')
 
 #14. Faça um programa que leia vários números inteiros e apresente o fatorial de cada
 #número. O algoritmo encerra quando se digita um número menor do que 1.n
+
+def q14():
+    while True:
+        n = int(input('Digite um número: '))
+        if n < 1:
+            break
+        fatorial = 1
+        for i in range(1, n + 1):
+            fatorial *= i
+        print(f'Fatorial de {n} = {fatorial}')
 
 #15. Faça um programa que permita entrar com a idade de várias pessoas e
 #imprima:
 #• total de pessoas com menos de 21 anos
 #• total de pessoas com mais de 50 anos
+
+def q15():
+    menos21 = 0
+    mais50 = 0
+    while True:
+        idade = int(input('Digite a idade (0 encerra): '))
+        if idade == 0:
+            break
+        if idade < 21:
+            menos21 += 1
+        if idade > 50:
+            mais50 += 1
+    print(f'Total menores de 21: {menos21}')
+    print(f'Total maiores de 50: {mais50}')
 
 #16. Sabendo-se que a unidade lógica e aritmética calcula a divisão por meio de subtrações
 #sucessivas, criar um algoritmo que calcule e imprima o resto da divisão de
@@ -238,6 +289,17 @@ def q121() -> None:
 #  2 é o Quociente (resultado inteiro da divisão)
 #  0 é o Resto da Divisão
 
+def q16():
+    dividendo = int(input('Dividendo: '))
+    divisor = int(input('Divisor: '))
+    quociente = 0
+    while dividendo >= divisor:
+        dividendo -= divisor
+        quociente += 1
+    resto = dividendo
+    print(f'Quociente: {quociente}')
+    print(f'Resto: {resto}')
+
 #17. Crie um programa que possa ler um conjunto de pedidos de compra e
 #calcule o valor total da compra. Cada pedido é composto pelos seguintes campos:
 #• número de pedido
@@ -246,7 +308,22 @@ def q121() -> None:
 #• quantidade
 #O programa deverá processar novos pedidos até que o usuário digite 0 (zero)
 #como número do pedido.
- 
+
+def q17():
+    total_compra = 0
+    while True:
+        pedido = int(input('Número do pedido: '))
+        if pedido == 0:
+            break
+        dia = int(input('Dia: '))
+        mes = int(input('Mês: '))
+        ano = int(input('Ano: '))
+        preco = float(input('Preço unitário: '))
+        quantidade = int(input('Quantidade: '))
+        total = preco * quantidade
+        total_compra += total
+    print(f'Valor total da compra: R$ {total_compra:.2f}')
+
 #18. Uma pousada estipulou o preço para a diária em R$30,00 e mais uma taxa de
 #serviços diários de:
 #• R$15,00, se o número de dias for menor que 10;
@@ -256,6 +333,27 @@ def q121() -> None:
 #O programa deverá ler novos clientes até que o usuário digite 0 (zero) como
 #número da conta.
 
+def q18():
+    faturamento = 0
+    while True:
+        conta = int(input('Número da conta: '))
+        if conta == 0:
+            break
+        nome = input('Nome do cliente: ')
+        dias = int(input('Quantidade de dias: '))
+        diaria = dias * 30
+        if dias < 10:
+            taxa = dias * 15
+        else:
+            taxa = dias * 8
+        total = diaria + taxa
+        faturamento += total
+        print(f'Cliente: {nome}')
+        print(f'Conta: {conta}')
+        print(f'Valor a pagar: R$ {total:.2f}')
+    print(f'Total faturado: R$ {faturamento:.2f}')
+
+
 #19. Em uma Universidade, os alunos das turmas de informática fizeram uma prova
 #de algoritmos. Cada turma possui um número de alunos. Criar um programa que
 #imprima:
@@ -263,6 +361,23 @@ def q121() -> None:
 #• média de cada turma;
 #• percentual de reprovados.
 #Obs.: Considere aprovado com nota >= 7.0
+#19. Média e aprovados
+
+def q19():
+    alunos = int(input('Quantidade de alunos: '))
+    aprovados = 0
+    soma = 0
+    for i in range(alunos):
+        nota = float(input(f'Nota do aluno {i+1}: '))
+        soma += nota
+        if nota >= 7:
+            aprovados += 1
+    media = soma / alunos
+    reprovados = alunos - aprovados
+    percentual = (reprovados / alunos) * 100
+    print(f'Aprovados: {aprovados}')
+    print(f'Média da turma: {media:.2f}')
+    print(f'Percentual de reprovados: {percentual:.2f}%')
 
 #20. Uma pesquisa de opinião realizada no Rio de Janeiro, teve as seguintes perguntas:
 #• Qual o seu time de coração?
@@ -284,6 +399,48 @@ def q121() -> None:
 #• o número de pessoas de Niterói torcedoras do Fluminense
 #3.12. Exercícios da Aula 73
 #Obs.: O programa encerra quando se digita 0 para o time.
+
+def q20():
+    flu = 0
+    bota = 0
+    vasco = 0
+    fla = 0
+    outros = 0
+    soma_botafogo = 0
+    qtd_botafogo = 0
+    rj_outros = 0
+    nit_flu = 0
+    while True:
+        time = int(input('Time (0 encerra): '))
+        if time == 0:
+            break
+        cidade = int(input('Cidade (1-RJ 2-Niterói 3-Outros): '))
+        salario = float(input('Salário: '))
+        if time == 1:
+            flu += 1
+            if cidade == 2:
+                nit_flu += 1
+        elif time == 2:
+            bota += 1
+            soma_botafogo += salario
+            qtd_botafogo += 1
+        elif time == 3:
+            vasco += 1
+        elif time == 4:
+            fla += 1
+        else:
+            outros += 1
+            if cidade == 1:
+                rj_outros += 1
+    print(f'Fluminense: {flu}')
+    print(f'Botafogo: {bota}')
+    print(f'Vasco: {vasco}')
+    print(f'Flamengo: {fla}')
+    print(f'Outros: {outros}')
+    if qtd_botafogo > 0:
+        print(f'Média salarial Botafogo: R$ {soma_botafogo/qtd_botafogo:.2f}')
+    print(f'Moradores RJ e outros clubes: {rj_outros}')
+    print(f'Niterói e Fluminense: {nit_flu}')
 
 #21. Em uma universidade cada aluno possui os seguintes dados:
 #• Renda pessoal;
@@ -396,12 +553,3 @@ def q121() -> None:
 #analisadas.
 #Obs.: Para encerrar a entrada de dados, digite um número menor que zero para a
 #idade.
-def q30() -> None:
-    raise NotImplementedError('q30() ainda não foi codificada')
-
-questao = int(input('Questão a ser executada: '))
-eval(f'q{questao}()')
-    else:
-        print("Opção inválida!")
-except Exception as e:
-    print(f"Erro: {e}")
